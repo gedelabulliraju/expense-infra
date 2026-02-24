@@ -62,14 +62,14 @@ module "db" {
 
 module "records" {
   source  = "terraform-aws-modules/route53/aws//modules/records"
-  version = "3.0.0"
+  version = "~> 2.0"
 
   zone_name = var.zone_name
 
   records = [
     
     {
-      name    = "mysql-${var.environment}" #mysql-dev.daws81s.online
+      name    = "mysql-${var.environment}" #mysql-dev.buddymarket.shop
       type    = "CNAME"
       ttl     = 1
       records = [
