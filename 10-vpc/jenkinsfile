@@ -26,7 +26,7 @@ pipeline {
             steps {
                 withAWS(region: 'us-east-1', credentials: 'aws-creds') {
                     sh """
-                        cd 00-vpc
+                        cd 10-vpc
                         if [ ${params.ACTION} == 'apply' ]
                         then
                             terraform apply -auto-approve tfplan
@@ -40,14 +40,14 @@ pipeline {
             }
 
         }
-        stage ('Trigger SG') {
-            when {
-                expression { params.ACTION == 'apply' }
-            }
-            steps{
-                build job: '10-sg', parameters: [string(name: 'ACTION', value: "apply")], wait: false
-            }
-        }
+        // stage ('Trigger SG') {
+        //     when {
+        //         expression { params.ACTION == 'apply' }
+        //     }
+        //     steps{
+        //         build job: '10-sg', parameters: [string(name: 'ACTION', value: "apply")], wait: false
+        //     }
+        // }
     }
     post {
         always {
