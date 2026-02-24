@@ -8,7 +8,7 @@ terraform {
 
  backend "s3" {
     bucket         = "srlaf-remote-state1"
-    key            = "expense-infra-eks-alb2"
+    key            = "expense-infra-alb"
     region         = "us-east-1"
     dynamodb_table = "81s-locking"
   }

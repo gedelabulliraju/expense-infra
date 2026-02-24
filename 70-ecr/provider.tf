@@ -5,9 +5,9 @@ terraform {
       version = "6.30.0"
     }
   }
-   backend "s3" {
+ backend "s3" {
     bucket         = "srlaf-remote-state1"
-    key            = "expense-infra-eks-ecr"
+    key            = "expense-infra-ecr"
     region         = "us-east-1"
     dynamodb_table = "81s-locking"
   }

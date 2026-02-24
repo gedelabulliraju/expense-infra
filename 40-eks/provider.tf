@@ -6,7 +6,7 @@ terraform {
     }
   }
 
-  backend "s3" {
+ backend "s3" {
     bucket         = "srlaf-remote-state1"
     key            = "expense-infra-eks"
     region         = "us-east-1"

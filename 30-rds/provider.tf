@@ -6,11 +6,11 @@ terraform {
     }
   }
 
-  backend "s3" {
-    bucket = "81s-remote-state-dev"
-    key    = "expense-rds-dev"
-    region = "us-east-1"
-    dynamodb_table = "81s-locking-dev"
+ backend "s3" {
+    bucket         = "srlaf-remote-state1"
+    key            = "expense-infra-rds"
+    region         = "us-east-1"
+    dynamodb_table = "81s-locking"
   }
 }
 
