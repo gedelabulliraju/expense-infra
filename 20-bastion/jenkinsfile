@@ -20,6 +20,7 @@ pipeline {
                 withAWS(region: 'us-east-1', credentials: 'aws-creds') {
                     sh """
                         cd 20-bastion
+                        terraform init -upgrade
                         terraform init -reconfigure
                         terraform plan -out=tfplan
                     """
