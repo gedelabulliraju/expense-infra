@@ -81,8 +81,7 @@ resource "aws_cloudfront_distribution" "expense" {
 }
 
 module "records" {
-  source  = "terraform-aws-modules/route53/aws//modules/records"
-  version = "~4.0"
+  source  = "terraform-aws-modules/route53/aws/"
 
   zone_name = var.zone_name #calculatorss.online
   records = [
