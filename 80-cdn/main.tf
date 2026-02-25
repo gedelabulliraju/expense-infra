@@ -83,7 +83,7 @@ resource "aws_cloudfront_distribution" "expense" {
 module "records" {
   source  = "terraform-aws-modules/route53/aws//modules/records"
 
-  zone_name = var.zone_name #daws81s.online
+  zone_name = var.zone_name #calculatorss.online
   records = [
     {
       name    = "expense-cdn" # *.app-dev
