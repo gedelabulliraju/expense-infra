@@ -120,7 +120,7 @@ resource "aws_route53_record" "expense-cdn" {
   alias {                                          # ఇక్కడ '=' ఉండకూడదు
     name                   = aws_cloudfront_distribution.expense.domain_name
     zone_id                = aws_cloudfront_distribution.expense.hosted_zone_id
-    allow_overwrite = true
+    # allow_overwrite = true
     evaluate_target_health = false
   }
 }
