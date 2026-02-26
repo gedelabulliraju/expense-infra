@@ -80,20 +80,33 @@ resource "aws_cloudfront_distribution" "expense" {
   }
 }
 
-module "records" {
-  source  = "terraform-aws-modules/route53/aws"
-  version = "~> 2.0"
+# module "records" {
+#   source  = "terraform-aws-modules/route53/aws"
+#   version = "~> 2.0"
 
-  zone_name = var.zone_name #calculatorss.online
-  records = [
-    {
-      name    = "expense-cdn" # *.app-dev
-      type    = "A"
-      alias   = {
+#   zone_name = var.zone_name #calculatorss.online
+#   records = [
+#     {
+#       name    = "expense-cdn" # *.app-dev
+#       type    = "A"
+#       alias   = {
+#         name    = aws_cloudfront_distribution.expense.domain_name
+#         zone_id = aws_cloudfront_distribution.expense.hosted_zone_id # This belongs CDN internal hosted zone, not ours
+#       }
+#       allow_overwrite = true
+#     }
+#   ]
+# }
+
+
+resource "aws_route53_record" "expense-cdn" {
+  zone_name = var.zone_name
+  zone_id = aws_cloudfront_distribution.expense.hosted_zone_id # This belongs CDN internal hosted zone, not ours
+  name    = "expense-cdn"
+  type    = "A"
+  alias   = {
         name    = aws_cloudfront_distribution.expense.domain_name
         zone_id = aws_cloudfront_distribution.expense.hosted_zone_id # This belongs CDN internal hosted zone, not ours
-      }
-      allow_overwrite = true
     }
-  ]
+  allow_overwrite = true
 }
