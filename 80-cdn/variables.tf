@@ -23,3 +23,7 @@ variable "frontend_tags" {
 variable "zone_name" {
     default = "calculatorss.online"
 }
+
+variable "zone_id" {
+    default = "Z05715311VP097V0BEWFM"
+}

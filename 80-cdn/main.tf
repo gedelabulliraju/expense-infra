@@ -99,14 +99,28 @@ resource "aws_cloudfront_distribution" "expense" {
 # }
 
 
+# resource "aws_route53_record" "expense-cdn" {
+#   zone_name = var.zone_name
+#   zone_id = aws_cloudfront_distribution.expense.hosted_zone_id # This belongs CDN internal hosted zone, not ours
+#   name    = "expense-cdn"
+#   type    = "A"
+#   alias   = {
+#         name    = aws_cloudfront_distribution.expense.domain_name
+#         zone_id = aws_cloudfront_distribution.expense.hosted_zone_id # This belongs CDN internal hosted zone, not ours
+#     }
+#   allow_overwrite = true
+# }
+
+
 resource "aws_route53_record" "expense-cdn" {
-  zone_name = var.zone_name
-  zone_id = aws_cloudfront_distribution.expense.hosted_zone_id # This belongs CDN internal hosted zone, not ours
-  name    = "expense-cdn"
+  zone_id = var.zone_id # ఇక్కడ zone_name వాడకూడదు
+  name    = "expense-cdn.${var.zone_name}"         # ఫుల్ డొమైన్ నేమ్ (eg: expense-cdn.calculatorss.online)
   type    = "A"
-  alias   = {
-        name    = aws_cloudfront_distribution.expense.domain_name
-        zone_id = aws_cloudfront_distribution.expense.hosted_zone_id # This belongs CDN internal hosted zone, not ours
-    }
-  allow_overwrite = true
+
+  alias {                                          # ఇక్కడ '=' ఉండకూడదు
+    name                   = aws_cloudfront_distribution.expense.domain_name
+    zone_id                = aws_cloudfront_distribution.expense.hosted_zone_id
+    allow_overwrite = true
+    evaluate_target_health = false
+  }
 }
