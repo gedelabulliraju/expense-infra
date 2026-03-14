@@ -7,10 +7,11 @@ terraform {
   }
 
  backend "s3" {
-    bucket         = "srlaf-remote-state1"
+    bucket         = "aws-expense-buck"
     key            = "expense-infra-eks"
     region         = "us-east-1"
-    dynamodb_table = "81s-locking"
+    use_lockfile = true
+    encrypt = true
   }
 }
 

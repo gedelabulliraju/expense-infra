@@ -70,7 +70,7 @@ module "records" {
   records = [
     
     {
-      name    = "mysql-${var.environment}" #mysql-dev.buddymarket.shop
+      name    = "mysql-${var.environment}" #mysql-dev.calculatorss.online
       type    = "CNAME"
       ttl     = 1
       records = [
