@@ -53,10 +53,13 @@ module "eks" {
     #   # EKS takes AWS Linux 2 as it's OS to the nodes
     #   key_name = aws_key_pair.eks.key_name
     # }
-    green = {
+    blue = {
       min_size      = 3
       max_size      = 10
-      desired_size  = 3
+      desired_size  = 2
+      update_config = {
+        max_unavailable = 1
+      }
       instance_types = ["m5.large"]
       #capacity_type = "SPOT"
       iam_role_additional_policies = {
