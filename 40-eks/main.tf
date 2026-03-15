@@ -53,8 +53,8 @@ module "eks" {
     #   # EKS takes AWS Linux 2 as it's OS to the nodes
     #   key_name = aws_key_pair.eks.key_name
     # }
-    blue = {
-      min_size      = 3
+    green = {
+      min_size      = 2
       max_size      = 10
       desired_size  = 3
       update_config = {
