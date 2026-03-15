@@ -57,9 +57,6 @@ module "eks" {
       min_size      = 3
       max_size      = 10
       desired_size  = 2
-      update_config = {
-        max_unavailable = 1
-      }
       instance_types = ["m5.large"]
       #capacity_type = "SPOT"
       iam_role_additional_policies = {
